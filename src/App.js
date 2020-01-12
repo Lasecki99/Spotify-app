@@ -7,25 +7,44 @@ import MusicBar from './components/MusicBar';
 
 const App = () => {
    const paramsToStore = getHashParams();
-   let params = '';
+   let refreshToken = '';
 
-   if (localStorage.getItem('params') === "{}") {
-      localStorage.setItem('params', JSON.stringify(paramsToStore));
-      params = JSON.parse(localStorage.getItem('params'));
-   } else {
-      params = JSON.parse(localStorage.getItem('params'));
+   const [loggedIn, setLoggedIn] = useState(false);
+
+   const refreshAccessToken = () => {
+      const refresh_token = JSON.parse(localStorage.getItem('access_token'));
+      console.log(refresh_token);
+      fetch(`http://localhost:8888/refresh_token?refresh_token=${refresh_token}`)
+         .then(res => res.json())
+         .then(data => {
+            spotifyWebApi.setAccessToken(data.access_token);
+            localStorage.setItem('access_token', JSON.stringify(data.access_token));
+            refreshToken = data.access_token;
+         })
+         .catch(err => console.log(err))
    }
 
-   params.access_token ? spotifyWebApi.setAccessToken(params.access_token) : alert('something went wrong');
+   if (refreshToken || paramsToStore.access_token) {
+      const localToken = JSON.parse(localStorage.getItem('access_token'));
+      localStorage.setItem('access_token', JSON.stringify(refreshToken || paramsToStore.access_token));
+      localStorage.setItem('refresh_token', JSON.stringify(refreshToken || paramsToStore.refresh_token));
+      localStorage.setItem("expirationDate", Date.now() + 3600 * 1000);
+      spotifyWebApi.setAccessToken(refreshToken || localToken);
+      if (!loggedIn) setLoggedIn(true);
+   }
 
-   const [loggedIn, setLoggedIn] = useState(params.access_token ? true : false);
+   const expirationDate = Number(localStorage.getItem("expirationDate"));
+   if (expirationDate && expirationDate < Date.now()) {
+      refreshAccessToken();
+   }
+
    return (
       <>
-         {loggedIn ? null : <LoginPage />}
-         <div className="App">
+         {loggedIn ? <div className="App">
+            <button style={{ marginLeft: 230 }} onClick={refreshAccessToken}>1231231</button>
             <PlaybackView />
             <MusicBar />
-         </div>
+         </div> : <LoginPage />}
       </>
    );
 }

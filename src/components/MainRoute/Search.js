@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../../styles/Search.css';
+import { SearchContext } from '../../contexts/SearchContextProvider';
 
 const Search = () => {
 
-    const [name, setName] = useState('');
+    const { setSongName, songName } = useContext(SearchContext);
+
     return (
         <div className="search">
-            <input value={name} onChange={e => setName(e.target.value)} placeholder="Start typing..." type="text" />
+            <input value={songName} onChange={e => setSongName(e.target.value)} placeholder="Start typing..." type="text" />
             <div className="search-main-content">
-                tutaj content
             </div>
         </div>
     );
 }
-
 export default Search;
