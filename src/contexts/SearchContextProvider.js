@@ -5,15 +5,17 @@ export const SearchContext = createContext();
 
 const SearchContextProvider = (props) => {
     const [songName, setSongName] = useState('');
+    const [songList, setSongList] = useState([]);
+
     useEffect(() => {
         if (songName) {
             spotifyWebApi.searchTracks(songName)
-                .then(res => console.log(res))
+                .then(res => setSongList(res))
         }
     }, [songName])
 
     return (
-        <SearchContext.Provider value={{ setSongName, songName }}>
+        <SearchContext.Provider value={{ setSongName, songName, songList }}>
             {props.children}
         </SearchContext.Provider>
     );

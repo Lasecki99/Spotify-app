@@ -1,10 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import '../../styles/Search.css';
 import { SearchContext } from '../../contexts/SearchContextProvider';
 
 const Search = () => {
+    const { setSongName, songName, songList } = useContext(SearchContext);
 
-    const { setSongName, songName } = useContext(SearchContext);
+    useEffect(() => {
+    }, [songList])
 
     return (
         <div className="search">
