@@ -4,18 +4,25 @@ import { spotifyWebApi } from '../spotifyWebApi/spotifyWebApi';
 export const SearchContext = createContext();
 
 const SearchContextProvider = (props) => {
-    const [songName, setSongName] = useState('');
-    const [songList, setSongList] = useState([]);
+    const [inputValue, setInputValue] = useState('');
+    const [searchList, setSearchList] = useState();
 
     useEffect(() => {
-        if (songName) {
-            spotifyWebApi.searchTracks(songName)
-                .then(res => setSongList(res))
-        }
-    }, [songName])
+        if (inputValue) {
+            spotifyWebApi.search(inputValue, ["album", "artist", "playlist", "track"], { limit: 10 })
+                .then(res => {
+                    const arr = [
+                        { type: 'albums', data: res.albums },
+                        { type: 'artists', data: res.artists },
+                        { type: 'playlists', data: res.playlists },
+                        { type: 'tracks', data: res.tracks }];
+                    setSearchList(arr);
+                })
+        } else setSearchList();
+    }, [inputValue])
 
     return (
-        <SearchContext.Provider value={{ setSongName, songName, songList }}>
+        <SearchContext.Provider value={{ setInputValue, inputValue, searchList }}>
             {props.children}
         </SearchContext.Provider>
     );
