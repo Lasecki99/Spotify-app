@@ -12,10 +12,10 @@ const SearchContextProvider = (props) => {
             spotifyWebApi.search(inputValue, ["album", "artist", "playlist", "track"], { limit: 10 })
                 .then(res => {
                     const arr = [
-                        { type: 'albums', data: res.albums },
-                        { type: 'artists', data: res.artists },
-                        { type: 'playlists', data: res.playlists },
-                        { type: 'tracks', data: res.tracks }];
+                        { type: 'Albums', data: res.albums },
+                        { type: 'Artists', data: res.artists },
+                        { type: 'Playlists', data: res.playlists },
+                        { type: 'Tracks', data: res.tracks }];
                     setSearchList(arr);
                 })
         } else setSearchList();

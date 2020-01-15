@@ -12,7 +12,6 @@ const App = () => {
 
    const refreshAccessToken = () => {
       const refresh_token = JSON.parse(localStorage.getItem('access_token'));
-      console.log(refresh_token);
       fetch(`http://localhost:8888/refresh_token?refresh_token=${refresh_token}`)
          .then(res => res.json())
          .then(data => {
@@ -48,7 +47,6 @@ const App = () => {
    return (
       <>
          {loggedIn ? <div className="App">
-            <PlaybackView />
             <MusicBar />
          </div> : <LoginPage />}
       </>
