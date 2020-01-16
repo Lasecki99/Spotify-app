@@ -1,12 +1,11 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import getHashParams from './params/getHashParams';
 import { spotifyWebApi } from './spotifyWebApi/spotifyWebApi';
 import LoginPage from './components/LoginPage';
-import PlaybackView from './components/PlaybackView';
 import MusicBar from './components/MusicBar';
 
 const App = () => {
-   const [paramsToStore, setParamsToStore] = useState(getHashParams());
+   const [paramsToStore] = useState(getHashParams());
    const [refreshToken, setRefreshToken] = useState('');
    const [loggedIn, setLoggedIn] = useState(paramsToStore.access_token ? true : false);
 
