@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import getHashParams from './params/getHashParams';
 import { spotifyWebApi } from './spotifyWebApi/spotifyWebApi';
 import LoginPage from './components/LoginPage';
-import MusicBar from './components/MusicBar';
+import MusicBar from './components/MusicBar/MusicBar';
 
 const App = () => {
    const [paramsToStore] = useState(getHashParams());

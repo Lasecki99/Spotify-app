@@ -1,0 +1,21 @@
+h2.list-of-songs {
+    color: #eee;
+    padding-left: 10px;
+    padding-top: 8px;
+    padding-bottom: 4px;
+}
+
+p.song-list-name.clickable {
+    color: #999;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: left;
+    cursor: pointer;
+}
+
+p.song-list-name.clickable.selected {
+    color: #222;
+    background-color: #ddd;
+    font-weight: bold;
+}

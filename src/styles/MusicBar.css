@@ -5,6 +5,7 @@ div.music-bar {
     left: 0;
     bottom: 14%;
     background-color: black;
+    overflow: scroll;
 }
 
 div.main-content {
