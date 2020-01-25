@@ -40,7 +40,7 @@ const AlbumContextProvider = (props) => {
                     spotifyWebApi.getPlaylistTracks(id, { limit: 15 })
                         .then(res => {
                             let track = res.items.filter(item => item.track.preview_url !== null);
-                            track = track.map(r => getTrack(r));
+                            track = track.map(r => getTrack(r.track));
                             setMusicArr(track);
                         })
                         .catch((err) => alert(err))

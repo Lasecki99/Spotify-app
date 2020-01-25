@@ -7,17 +7,8 @@ import { PlaybackContext } from '../../contexts/PlaybackContextProvider';
 
 const SongList = () => {
 
-
     const { musicArr } = useContext(AlbumContext);
     const { setSongToPlay, songToPlay } = useContext(PlaybackContext);
-
-
-    const selectSong = (e) => {
-        const pItems = document.querySelectorAll('p.song-list-name.clickable');
-        pItems.forEach(item => item.classList.remove('selected'));
-        e.target.classList.add('selected');
-    }
-
 
     return (
         <>
@@ -29,9 +20,7 @@ const SongList = () => {
                     <p key={uuid()} onClick={() => setSongToPlay(item)} className={songToPlay === item ? 'song-list-name clickable selected' : 'song-list-name clickable'}>{`${author} - ${name}`}</p>
                 )
             }) : null}
-
         </>
     );
 }
-
 export default SongList;
