@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../../../styles/scss/NowPlaying.css'
+import { PlaybackContext } from '../../../contexts/PlaybackContextProvider';
 
 const NowPlaying = (props) => {
 
+    const { songToPlay } = useContext(PlaybackContext);
 
     return (
         <>
-            {props.firstSong ?
+            {songToPlay ?
                 <>
                     <div className="now-playing">
                         <h2 className='now-playing-intro'>Now playing</h2>
-                        <p className="now-playing-name">{`${props.firstSong.author} - ${props.firstSong.name}`}</p>
+                        <p className="song-list-name clickable">{`${songToPlay.author} - ${songToPlay.name}`}</p>
                     </div>
                 </>
                 : null}

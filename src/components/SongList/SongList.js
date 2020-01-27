@@ -12,7 +12,7 @@ const SongList = () => {
 
     return (
         <>
-            <NowPlaying firstSong={musicArr ? musicArr[0] : null} />
+            <NowPlaying />
             {musicArr ? <h2 className="list-of-songs">List of songs</h2> : null}
             {musicArr ? musicArr.map(item => {
                 const { author, name } = item;
