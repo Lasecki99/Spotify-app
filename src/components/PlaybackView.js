@@ -1,7 +1,46 @@
 import React, { useContext } from 'react';
-import '../styles/PlaybackView.css'
 import { PlaybackContext } from '../contexts/PlaybackContextProvider';
 import { AlbumContext } from '../contexts/AlbumContextProvider';
+import styled from 'styled-components';
+
+const PlaybackStyles = styled.div`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 90px;
+    width: 100vw;
+    background-color: #282828;
+
+    > div.playback-buttons {
+        display: flex;
+        position: absolute;
+        top: 33%;
+        left: 50%;
+        margin: 0 auto;
+        transform: translate(-50%, -50%);
+        font-size: 30px;
+
+        &.active { top: 50%; }
+
+        > i {
+            padding: 0 5px;
+            color: #bbb;
+            cursor: pointer;
+
+            &.toggle { display: none }
+        }
+    }
+
+    > div.playback-text {
+        margin-top: 53px;
+
+        > p {
+            color: ${props => props.theme.alto};
+            text-align: center;
+        }
+    }
+`;
 
 const PlaybackView = () => {
     const { songToPlay, setSongToPlay, autoplayNext } = useContext(PlaybackContext);
@@ -43,7 +82,7 @@ const PlaybackView = () => {
     }
 
     return (
-        <div className="playback">
+        <PlaybackStyles>
             <div className={songToPlay ? 'playback-buttons' : 'playback-buttons active'}>
                 <i onClick={e => nextOrPreviousSong(e)} className="fas fa-step-backward"></i>
                 <i id='play' onClick={() => playOrPause(songToPlay)} className="far fa-play-circle"></i>
@@ -58,7 +97,7 @@ const PlaybackView = () => {
                         <p className="current-author">{songToPlay.author}</p>
                     </> : null}
             </div>
-        </div>
+        </PlaybackStyles>
     );
 }
 export default PlaybackView;

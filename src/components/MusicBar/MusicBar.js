@@ -1,41 +1,74 @@
 import React from 'react';
-import '../../styles/MusicBar.css';
 import { NavLink, Route, BrowserRouter } from 'react-router-dom';
 import Search from '../MainRoute/Search';
 import NewReleases from '../MainRoute/NewReleases';
 import Playlist from '../MainRoute/Playlist';
-import SearchContextProvider from '../../contexts/SearchContextProvider';
 import SongList from '../SongList/SongList';
-import AlbumContextProvider from '../../contexts/AlbumContextProvider';
 import PlaybackView from '../PlaybackView';
-import PlaybackContextProvider from '../../contexts/PlaybackContextProvider';
+
+import styled from 'styled-components';
+
+const MusicAside = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 90px;
+  width: 230px;
+  background-color: black;
+  overflow: scroll;
+
+  > ul {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0 0 30px;
+
+    > a {
+      margin: 4px 0;
+      z-index: 1000000;
+      color: ${props => props.theme.dustyGray};
+
+      &:hover i,
+      &:hover p,
+      &.active i,
+      &.active p {
+        color: ${props => props.theme.alto}
+      }
+
+      > p {
+        z-index: -1;
+        display: inline-block;
+        margin-left: 10px;
+        font-size: 18px;
+        vertical-align: -1px;
+      }
+
+      > i {
+        font-size: 19px;
+        z-index: -1;
+      }
+    }
+  }
+`;
 
 const MusicBar = () => {
 
-    return (
-        <>
-            <SearchContextProvider>
-                <AlbumContextProvider>
-                    <PlaybackContextProvider>
-                        <BrowserRouter>
-                            <div className="music-bar">
-                                <ul className="flex-list">
-                                    <NavLink exact to="/" className='flex-item'><i className="fas fa-search"></i><p className="text">Search</p></NavLink>
-                                    <NavLink to="/new-releases" className='flex-item'><i className="fas fa-compact-disc"></i><p className="text">New releases</p></NavLink>
-                                    <NavLink to="/playlist" className='flex-item'><i className="fas fa-sliders-h"></i><p className="text">Playlist</p></NavLink>
-                                </ul>
-                                <SongList />
-                            </div>
-                            <Route path="/new-releases" component={NewReleases} />
-                            <Route path="/playlist" component={Playlist} />
-                            <Route path="/" exact component={Search} />
-                            <PlaybackView />
-
-                        </BrowserRouter>
-                    </PlaybackContextProvider>
-                </AlbumContextProvider>
-            </SearchContextProvider>
-        </>
-    );
+  return (
+    <>
+      <BrowserRouter>
+        <MusicAside>
+          <ul>
+            <NavLink exact to="/"><i className="fas fa-search"></i><p>Search</p></NavLink>
+            <NavLink to="/new-releases"><i className="fas fa-compact-disc"></i><p>New releases</p></NavLink>
+            <NavLink to="/playlist"><i className="fas fa-sliders-h"></i><p>Playlist</p></NavLink>
+            <SongList />
+          </ul>
+        </MusicAside>
+        <Route path="/new-releases" component={NewReleases} />
+        <Route path="/playlist" component={Playlist} />
+        <Route path="/" exact component={Search} />
+        <PlaybackView />
+      </BrowserRouter>
+    </>
+  );
 }
 export default MusicBar;

@@ -3,51 +3,41 @@ import getHashParams from './params/getHashParams';
 import { spotifyWebApi } from './spotifyWebApi/spotifyWebApi';
 import LoginPage from './components/LoginPage';
 import MusicBar from './components/MusicBar/MusicBar';
+import SearchContextProvider from './contexts/SearchContextProvider';
+import PlaybackContextProvider from './contexts/PlaybackContextProvider';
+import NewReleasesContextProvider from './contexts/NewReleasesContextProvider';
+import AlbumContextProvider from './contexts/AlbumContextProvider';
 
 const App = () => {
-   const [paramsToStore] = useState(getHashParams());
-   const [refreshToken, setRefreshToken] = useState('');
-   const [loggedIn, setLoggedIn] = useState(paramsToStore.access_token ? true : false);
+   const [loggedIn, setLoggedIn] = useState(false);
 
-   const refreshAccessToken = () => {
-      const refresh_token = JSON.parse(localStorage.getItem('access_token'));
-      fetch(`http://localhost:8888/refresh_token?refresh_token=${refresh_token}`)
-         .then(res => res.json())
-         .then(data => {
-            spotifyWebApi.setAccessToken(data.access_token);
-            localStorage.setItem('access_token', JSON.stringify(data.access_token));
-            setRefreshToken(data.access_token);
-         })
-         .catch(() => {
-            alert("Couldn't refresh your access token. Please try to sign in once again.");
-            setLoggedIn(false);
-            window.location.reload();
-         })
-   }
 
-   if (refreshToken || paramsToStore.access_token) {
-      const localToken = JSON.parse(localStorage.getItem('access_token'));
-      localStorage.setItem('access_token', JSON.stringify(refreshToken || paramsToStore.access_token));
-      localStorage.setItem('refresh_token', JSON.stringify(refreshToken || paramsToStore.refresh_token));
-      spotifyWebApi.setAccessToken(refreshToken || localToken);
+   if (localStorage.getItem('accessToken')) {
+      spotifyWebApi.setAccessToken(JSON.parse(localStorage.getItem('accessToken')));
       if (!loggedIn) setLoggedIn(true);
-   }
-
-   if (!localStorage.getItem("expirationDate")) {
-      localStorage.setItem("expirationDate", Date.now() + 3600 * 1000);
-   }
-
-   const expirationDate = Number(localStorage.getItem("expirationDate"));
-   if (expirationDate && expirationDate < Date.now()) {
-      refreshAccessToken();
-      localStorage.setItem("expirationDate", Date.now() + 3600 * 1000);
+   } else {
+      const params = getHashParams();
+      if (Object.keys(params).length) {
+         const store = JSON.stringify(params.access_token);
+         localStorage.setItem('accessToken', store);
+         spotifyWebApi.setAccessToken(params.access_token);
+         if (!loggedIn) setLoggedIn(true);
+      }
    }
 
    return (
       <>
-         {loggedIn ? <div className="App">
-            <MusicBar />
-         </div> : <LoginPage />}
+         <SearchContextProvider>
+            <AlbumContextProvider>
+               <PlaybackContextProvider>
+                  <NewReleasesContextProvider isLogged={loggedIn}>
+                     {loggedIn ? <div className="App">
+                        <MusicBar />
+                     </div> : <LoginPage />}
+                  </NewReleasesContextProvider>
+               </PlaybackContextProvider>
+            </AlbumContextProvider>
+         </SearchContextProvider>
       </>
    );
 }

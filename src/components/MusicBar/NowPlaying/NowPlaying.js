@@ -1,23 +1,36 @@
 import React, { useContext } from 'react';
-import '../../../styles/scss/NowPlaying.css'
 import { PlaybackContext } from '../../../contexts/PlaybackContextProvider';
+import styled from 'styled-components';
 
-const NowPlaying = (props) => {
+const NowPlayingView = styled.div`
+  color: #999;
+  padding-left: 12px;
+  padding-top: 10px;
 
-    const { songToPlay } = useContext(PlaybackContext);
+  > h2 {
+    color: #eee;
+    padding-top: 15px;
+    padding-left: 10px;
+    font-size: 22px;
+  }
+`;
 
-    return (
+const NowPlaying = () => {
+
+  const { songToPlay } = useContext(PlaybackContext);
+
+  return (
+    <>
+      {songToPlay ?
         <>
-            {songToPlay ?
-                <>
-                    <div className="now-playing">
-                        <h2 className='now-playing-intro'>Now playing</h2>
-                        <p className="song-list-name clickable">{`${songToPlay.author} - ${songToPlay.name}`}</p>
-                    </div>
-                </>
-                : null}
+          <NowPlayingView>
+            <h2>Now playing</h2>
+            <p className="song-list-name clickable">{`${songToPlay.author} - ${songToPlay.name}`}</p>
+          </NowPlayingView>
         </>
-    );
+        : null}
+    </>
+  );
 }
 
 export default NowPlaying;
