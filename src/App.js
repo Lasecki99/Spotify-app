@@ -1,27 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import getHashParams from './params/getHashParams';
 import { spotifyWebApi } from './spotifyWebApi/spotifyWebApi';
 import LoginPage from './components/LoginPage';
 import MusicBar from './components/MusicBar/MusicBar';
 import SearchContextProvider from './contexts/SearchContextProvider';
 import PlaybackContextProvider from './contexts/PlaybackContextProvider';
-import NewReleasesContextProvider from './contexts/NewReleasesContextProvider';
 import AlbumContextProvider from './contexts/AlbumContextProvider';
+import { connect } from 'react-redux';
 
-const App = () => {
-   const [loggedIn, setLoggedIn] = useState(false);
-
+const App = props => {
 
    if (localStorage.getItem('accessToken')) {
       spotifyWebApi.setAccessToken(JSON.parse(localStorage.getItem('accessToken')));
-      if (!loggedIn) setLoggedIn(true);
+      if (!props.loggedIn) props.setLoggedIn(true);
    } else {
       const params = getHashParams();
       if (Object.keys(params).length) {
          const store = JSON.stringify(params.access_token);
          localStorage.setItem('accessToken', store);
          spotifyWebApi.setAccessToken(params.access_token);
-         if (!loggedIn) setLoggedIn(true);
+         if (!props.loggedIn) props.setLoggedIn(true);
       }
    }
 
@@ -30,15 +28,22 @@ const App = () => {
          <SearchContextProvider>
             <AlbumContextProvider>
                <PlaybackContextProvider>
-                  <NewReleasesContextProvider isLogged={loggedIn}>
-                     {loggedIn ? <div className="App">
-                        <MusicBar />
-                     </div> : <LoginPage />}
-                  </NewReleasesContextProvider>
+                  {props.loggedIn ? <div className="App">
+                     <MusicBar />
+                  </div> : <LoginPage />}
                </PlaybackContextProvider>
             </AlbumContextProvider>
          </SearchContextProvider>
       </>
    );
 }
-export default App;
+
+const mapStateToProps = state => ({
+   loggedIn: state.appReducer.loggedIn
+})
+
+const mapDispatchToProps = dispatch => ({
+   setLoggedIn: bool => dispatch({ type: 'SET_LOGGED_IN', bool })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
