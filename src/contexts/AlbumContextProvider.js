@@ -3,7 +3,7 @@ import { spotifyWebApi } from '../spotifyWebApi/spotifyWebApi';
 export const AlbumContext = createContext();
 const message = "Couldn't load tracks. Please try again later.";
 
-const AlbumContextProvider = (props) => {
+const AlbumContextProvider = props => {
 
     const [clickedSong, setClickedSong] = useState();
     const [musicArr, setMusicArr] = useState();

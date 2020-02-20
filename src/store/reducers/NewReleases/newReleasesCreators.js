@@ -1,7 +1,8 @@
 import { spotifyWebApi } from '../../../spotifyWebApi/spotifyWebApi';
+import { GET_NEW_RELEASES } from '../../actions/actionTypes';
 
 export const getNewReleasesSuccess = res => ({
-  type: 'GET_NEW_RELEASES',
+  type: GET_NEW_RELEASES,
   res
 })
 

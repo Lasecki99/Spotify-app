@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import SearchType from './SearchType/SearchType';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { getNewReleases } from '../../store/reducers/NewReleases/newReleasesCreators'
+import { getNewReleases } from '../../store/reducers/newReleases/newReleasesCreators';
 
 const NewReleasesView = styled.div`
   width: calc(100% - 230px);
@@ -26,15 +26,15 @@ const NewReleasesView = styled.div`
   }
 `;
 
-const NewReleases = props => {
+const NewReleases = ({ newReleases, getNewReleasesFn }) => {
 
   useEffect(() => {
-    if (!props.newReleases.length) {
-      props.getNewReleasesFn();
+    if (!newReleases.length) {
+      getNewReleasesFn();
     }
-  }, [props, props.newReleases])
+  }, [newReleases])
 
-  const dataObject = [{ type: 'New Releases', data: { items: props.newReleases } }];
+  const dataObject = [{ type: 'New Releases', data: { items: newReleases } }];
 
   return (
     <NewReleasesView>
