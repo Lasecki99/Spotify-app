@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { PlaybackContext } from '../contexts/PlaybackContextProvider';
-import { AlbumContext } from '../contexts/AlbumContextProvider';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 const PlaybackStyles = styled.div`
     position: absolute;
@@ -42,9 +42,9 @@ const PlaybackStyles = styled.div`
     }
 `;
 
-const PlaybackView = () => {
+const PlaybackView = ({ musicArr }) => {
+
     const { songToPlay, setSongToPlay, autoplayNext } = useContext(PlaybackContext);
-    const { musicArr } = useContext(AlbumContext);
 
     const playOrPause = songToPlay => {
         if (songToPlay) {
@@ -100,4 +100,10 @@ const PlaybackView = () => {
         </PlaybackStyles>
     );
 }
-export default PlaybackView;
+
+const mapStateToProps = state => ({
+    musicArr: state.albumReducer.musicArr
+})
+
+
+export default connect(mapStateToProps)(PlaybackView);

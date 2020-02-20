@@ -4,7 +4,6 @@ import { spotifyWebApi } from './spotifyWebApi/spotifyWebApi';
 import LoginPage from './components/LoginPage';
 import MusicBar from './components/MusicBar/MusicBar';
 import PlaybackContextProvider from './contexts/PlaybackContextProvider';
-import AlbumContextProvider from './contexts/AlbumContextProvider';
 import { connect } from 'react-redux';
 import { SET_LOGGED_IN } from './store/actions/actionTypes';
 
@@ -25,13 +24,11 @@ const App = ({ loggedIn, setLoggedIn }) => {
 
    return (
       <>
-         <AlbumContextProvider>
-            <PlaybackContextProvider>
-               {loggedIn ? <div className="App">
-                  <MusicBar />
-               </div> : <LoginPage />}
-            </PlaybackContextProvider>
-         </AlbumContextProvider>
+         <PlaybackContextProvider>
+            {loggedIn ? <div className="App">
+               <MusicBar />
+            </div> : <LoginPage />}
+         </PlaybackContextProvider>
       </>
    );
 }

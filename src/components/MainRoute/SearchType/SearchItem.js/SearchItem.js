@@ -1,19 +1,23 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import jpg from '../../../../assets/music.jpg'
-import { AlbumContext } from '../../../../contexts/AlbumContextProvider';
+import { connect } from 'react-redux';
+import { checkAndReturnSongs } from '../../../../store/reducers/Album/albumReducerCreator';
 
-const SearchItem = props => {
-
-    const { setClickedSong } = useContext(AlbumContext);
-    const { item } = props;
+const SearchItem = ({ item, setMusicArr }) => {
 
     return (
         <>
             <div className="song">
-                <img onClick={() => setClickedSong(item)} src={item.images && item.images.length ? item.images[0].url : jpg} alt="" />
-                <p onClick={() => setClickedSong(item)} className='song-name'>{item.name}</p>
+                <img onClick={() => setMusicArr(item)} src={item.images && item.images.length ? item.images[0].url : jpg} alt="" />
+                <p onClick={() => setMusicArr(item)} className='song-name'>{item.name}</p>
             </div>
         </>
     );
 }
-export default SearchItem;
+
+const mapDispatchToProps = dispatch => ({
+    setClickedSong: clicked => dispatch({ type: 'SET_CLICKED_SONG', clicked }),
+    setMusicArr: value => dispatch(checkAndReturnSongs(value)),
+})
+
+export default connect(null, mapDispatchToProps)(SearchItem);

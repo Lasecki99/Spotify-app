@@ -1,10 +1,9 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import { AlbumContext } from './AlbumContextProvider';
+import React, { createContext, useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 export const PlaybackContext = createContext();
 
-const PlaybackContextProvider = (props) => {
-    const { musicArr } = useContext(AlbumContext);
+const PlaybackContextProvider = ({ children, musicArr }) => {
     const [songToPlay, setSongToPlay] = useState();
     const [songBefore, setSongBefore] = useState();
 
@@ -35,10 +34,14 @@ const PlaybackContextProvider = (props) => {
 
     return (
         <PlaybackContext.Provider value={{ setSongToPlay, songToPlay, songBefore, autoplayNext }}>
-            {props.children}
+            {children}
         </PlaybackContext.Provider>
     );
 }
 
-export default PlaybackContextProvider;
+const mapStateToProps = state => ({
+    musicArr: state.albumReducer.musicArr
+})
+
+export default connect(mapStateToProps)(PlaybackContextProvider);
 

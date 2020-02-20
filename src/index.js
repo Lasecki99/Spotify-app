@@ -11,13 +11,15 @@ import thunk from 'redux-thunk';
 import newReleases from './store/reducers/newReleases/newReleases';
 import appReducer from './store/reducers/App/appReducer';
 import searchReducer from './store/reducers/Search/searchReducer';
+import albumReducer from './store/reducers/Album/albumReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   newReleases,
   appReducer,
-  searchReducer
+  searchReducer,
+  albumReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
