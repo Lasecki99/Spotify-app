@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
-import { PlaybackContext } from '../contexts/PlaybackContextProvider';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const PlaybackStyles = styled.div`
     position: absolute;
@@ -44,9 +43,18 @@ const PlaybackStyles = styled.div`
 
 const PlaybackView = () => {
 
+    const dispatch = useDispatch();
     const musicArr = useSelector(state => state.albumReducer.musicArr);
+    const songToPlay = useSelector(state => state.playbackReducer.songToPlay);
+    const songBefore = useSelector(state => state.playbackReducer.songBefore);
 
-    const { songToPlay, setSongToPlay, autoplayNext } = useContext(PlaybackContext);
+    const autoplayNext = song => {
+        if (song) {
+            let index = musicArr.indexOf(song) + 1;
+            if (index === musicArr.length) index = 0;
+            dispatch({ type: 'SET_SONG_TO_PLAY', song: musicArr[index] })
+        }
+    }
 
     const playOrPause = songToPlay => {
         if (songToPlay) {
@@ -74,14 +82,31 @@ const PlaybackView = () => {
             if (target.contains('fa-step-forward')) {
                 index += 1;
                 if (index === musicArr.length) index = 0;
-                setSongToPlay(musicArr[index]);
+                dispatch({ type: 'SET_SONG_TO_PLAY', song: musicArr[index] })
             } else if (target.contains('fa-step-backward')) {
                 index -= 1;
                 if (index < 0) index = musicArr.length - 1;
-                setSongToPlay(musicArr[index]);
+                dispatch({ type: 'SET_SONG_TO_PLAY', song: musicArr[index] })
             }
         }
     }
+
+    useEffect(() => {
+        if (songToPlay) {
+            dispatch({ type: 'SET_SONG_BEFORE', song: songToPlay })
+            if (songBefore) {
+                const { audio } = songBefore;
+                audio.removeEventListener('ended', autoplayNext);
+                audio.added = false;
+                audio.pause();
+                audio.currentTime = 0;
+            }
+            if (document.getElementById('play').classList.contains('toggle')) {
+                songToPlay.audio.addEventListener('ended', () => autoplayNext(songToPlay));
+                songToPlay.audio.play();
+            }
+        }
+    }, [songToPlay])
 
     return (
         <PlaybackStyles>

@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import uuid from 'uuid/v1';
 import NowPlaying from '../MusicBar/NowPlaying/NowPlaying';
 import '../../styles/scss/SongList.css';
-import { PlaybackContext } from '../../contexts/PlaybackContextProvider';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const SongList = () => {
 
-    const musicArr = useSelector(state => state.albumReducer.musicArr)
-    const { setSongToPlay, songToPlay } = useContext(PlaybackContext);
+    const dispatch = useDispatch();
+    const musicArr = useSelector(state => state.albumReducer.musicArr);
+    const songToPlay = useSelector(state => state.playbackReducer.songToPlay);
 
     return (
         <>
@@ -17,7 +17,7 @@ const SongList = () => {
             {musicArr.length ? musicArr.map(item => {
                 const { author, name } = item;
                 return (
-                    <p key={uuid()} onClick={() => setSongToPlay(item)} className={songToPlay === item ? 'song-list-name clickable selected' : 'song-list-name clickable'}>{`${author} - ${name}`}</p>
+                    <p key={uuid()} onClick={() => dispatch({ type: 'SET_SONG_TO_PLAY', song: item })} className={songToPlay === item ? 'song-list-name clickable selected' : 'song-list-name clickable'}>{`${author} - ${name}`}</p>
                 )
             }) : null}
         </>

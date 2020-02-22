@@ -8,10 +8,11 @@ import * as theme from './theme/theme';
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import newReleases from './store/reducers/newReleases/newReleases';
+import newReleases from './store/reducers/NewReleases/newReleases';
 import appReducer from './store/reducers/App/appReducer';
 import searchReducer from './store/reducers/Search/searchReducer';
 import albumReducer from './store/reducers/Album/albumReducer';
+import playbackReducer from './store/reducers/Playback/playbackReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   newReleases,
   appReducer,
   searchReducer,
-  albumReducer
+  albumReducer,
+  playbackReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { PlaybackContext } from '../../../contexts/PlaybackContextProvider';
+import React from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 const NowPlayingView = styled.div`
   color: #999;
@@ -17,7 +17,7 @@ const NowPlayingView = styled.div`
 
 const NowPlaying = () => {
 
-  const { songToPlay } = useContext(PlaybackContext);
+  const songToPlay = useSelector(state => state.playbackReducer.songToPlay)
 
   return (
     <>
