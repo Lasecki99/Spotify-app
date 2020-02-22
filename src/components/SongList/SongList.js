@@ -3,10 +3,11 @@ import uuid from 'uuid/v1';
 import NowPlaying from '../MusicBar/NowPlaying/NowPlaying';
 import '../../styles/scss/SongList.css';
 import { PlaybackContext } from '../../contexts/PlaybackContextProvider';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const SongList = ({ musicArr }) => {
+const SongList = () => {
 
+    const musicArr = useSelector(state => state.albumReducer.musicArr)
     const { setSongToPlay, songToPlay } = useContext(PlaybackContext);
 
     return (
@@ -23,8 +24,4 @@ const SongList = ({ musicArr }) => {
     );
 }
 
-const mapStateToProps = state => ({
-    musicArr: state.albumReducer.musicArr
-})
-
-export default connect(mapStateToProps)(SongList);
+export default SongList;

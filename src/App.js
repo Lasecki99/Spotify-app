@@ -4,21 +4,24 @@ import { spotifyWebApi } from './spotifyWebApi/spotifyWebApi';
 import LoginPage from './components/LoginPage';
 import MusicBar from './components/MusicBar/MusicBar';
 import PlaybackContextProvider from './contexts/PlaybackContextProvider';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { SET_LOGGED_IN } from './store/actions/actionTypes';
 
-const App = ({ loggedIn, setLoggedIn }) => {
+const App = () => {
+
+   const loggedIn = useSelector(state => state.appReducer.loggedIn);
+   const dispatch = useDispatch();
 
    if (localStorage.getItem('accessToken')) {
       spotifyWebApi.setAccessToken(JSON.parse(localStorage.getItem('accessToken')));
-      if (!loggedIn) setLoggedIn(true);
+      if (!loggedIn) dispatch({type: SET_LOGGED_IN, bool: true});
    } else {
       const params = getHashParams();
       if (Object.keys(params).length) {
          const store = JSON.stringify(params.access_token);
          localStorage.setItem('accessToken', store);
          spotifyWebApi.setAccessToken(params.access_token);
-         if (!loggedIn) setLoggedIn(true);
+         if (!loggedIn) dispatch({type: SET_LOGGED_IN, bool: true});
       }
    }
 
@@ -33,12 +36,4 @@ const App = ({ loggedIn, setLoggedIn }) => {
    );
 }
 
-const mapStateToProps = state => ({
-   loggedIn: state.appReducer.loggedIn
-})
-
-const mapDispatchToProps = dispatch => ({
-   setLoggedIn: bool => dispatch({ type: SET_LOGGED_IN, bool })
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

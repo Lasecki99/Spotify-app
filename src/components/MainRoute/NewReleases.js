@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import SearchType from './SearchType/SearchType';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { getNewReleases } from '../../store/reducers/newReleases/newReleasesCreators';
+import { useSelector, useDispatch } from 'react-redux';
+import { getNewReleases } from '../../store/reducers/NewReleases/newReleasesCreators';
 
 const NewReleasesView = styled.div`
   width: calc(100% - 230px);
@@ -26,13 +26,16 @@ const NewReleasesView = styled.div`
   }
 `;
 
-const NewReleases = ({ newReleases, getNewReleasesFn }) => {
+const NewReleases = () => {
+
+  const newReleases = useSelector(state => state.newReleases.newReleases);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!newReleases.length) {
-      getNewReleasesFn();
+      dispatch(getNewReleases());
     }
-  }, [newReleases])
+  }, [dispatch, newReleases])
 
   const dataObject = [{ type: 'New Releases', data: { items: newReleases } }];
 
@@ -43,12 +46,4 @@ const NewReleases = ({ newReleases, getNewReleasesFn }) => {
   );
 }
 
-const mapStateToProps = state => ({
-  newReleases: state.newReleases.newReleases
-});
-
-const mapDispatchToProps = dispatch => ({
-  getNewReleasesFn: () => dispatch(getNewReleases())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewReleases)
+export default NewReleases;

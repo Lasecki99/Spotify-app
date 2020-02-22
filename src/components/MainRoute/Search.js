@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/Search.css';
 import SearchType from './SearchType/SearchType';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getSearchList } from '../../store/reducers/Search/searchReducerCreators';
 import { RESET_LIST } from '../../store/actions/actionTypes';
 
-const Search = ({ searchList, getSearchListFn, resetSearchList }) => {
+const Search = () => {
+
+    const searchList = useSelector(state => state.searchReducer.searchList);
+    const dispatch = useDispatch();
 
     const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
-        if (inputValue) getSearchListFn(inputValue);
-        else if (searchList.length) resetSearchList();
+        if (inputValue) dispatch(getSearchList(inputValue));
+        else if (searchList.length) dispatch({type: RESET_LIST});
     }, [inputValue])
 
     return (
@@ -26,13 +29,4 @@ const Search = ({ searchList, getSearchListFn, resetSearchList }) => {
     );
 }
 
-const mapStateToProps = state => ({
-    searchList: state.searchReducer.searchList
-})
-
-const mapDispatchToProps = dispatch => ({
-    getSearchListFn: inputValue => dispatch(getSearchList(inputValue)),
-    resetSearchList: () => dispatch({ type: RESET_LIST })
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default Search;

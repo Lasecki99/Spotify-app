@@ -1,9 +1,12 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export const PlaybackContext = createContext();
 
-const PlaybackContextProvider = ({ children, musicArr }) => {
+const PlaybackContextProvider = props => {
+
+    const musicArr = useSelector(state => state.albumReducer.musicArr);
+
     const [songToPlay, setSongToPlay] = useState();
     const [songBefore, setSongBefore] = useState();
 
@@ -34,14 +37,9 @@ const PlaybackContextProvider = ({ children, musicArr }) => {
 
     return (
         <PlaybackContext.Provider value={{ setSongToPlay, songToPlay, songBefore, autoplayNext }}>
-            {children}
+            {props.children}
         </PlaybackContext.Provider>
     );
 }
 
-const mapStateToProps = state => ({
-    musicArr: state.albumReducer.musicArr
-})
-
-export default connect(mapStateToProps)(PlaybackContextProvider);
-
+export default PlaybackContextProvider;
