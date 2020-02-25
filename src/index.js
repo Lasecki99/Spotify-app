@@ -13,6 +13,7 @@ import appReducer from './store/reducers/App/appReducer';
 import searchReducer from './store/reducers/Search/searchReducer';
 import albumReducer from './store/reducers/Album/albumReducer';
 import playbackReducer from './store/reducers/Playback/playbackReducer';
+import playlistReducer from './store/reducers/Playlist/playlistReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   appReducer,
   searchReducer,
   albumReducer,
-  playbackReducer
+  playbackReducer,
+  playlistReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

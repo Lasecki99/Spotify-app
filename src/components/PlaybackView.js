@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
+import { v1 } from 'uuid'
 
 const PlaybackStyles = styled.div`
     position: absolute;
@@ -91,6 +92,13 @@ const PlaybackView = () => {
         }
     }
 
+    const addToPlaylist = songToPlay => {
+        if (songToPlay) {
+            songToPlay.id = v1();
+            dispatch({ type: 'ADD_TO_PLAYLIST', song: songToPlay, id: v1() })
+        }
+    }
+
     useEffect(() => {
         if (songToPlay) {
             dispatch({ type: 'SET_SONG_BEFORE', song: songToPlay })
@@ -115,7 +123,7 @@ const PlaybackView = () => {
                 <i id='play' onClick={() => playOrPause(songToPlay)} className="far fa-play-circle"></i>
                 <i id='stop' onClick={() => playOrPause(songToPlay)} className="far fa-pause-circle toggle"></i>
                 <i onClick={e => nextOrPreviousSong(e)} className="fas fa-step-forward"></i>
-                <i className="fas fa-plus"></i>
+                <i onClick={() => addToPlaylist(songToPlay)} className="fas fa-plus"></i>
             </div>
             <div className="playback-text">
                 {songToPlay ?

@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux'
 
 const PlaylistView = styled.div`
   height: 100%;
   background-color: #121212;
   overflow: scroll;
   padding-left: 20px;
-
+  margin-left: 230px;
+  color:white;
 `;
 
 const Playlist = () => {
+
+  const playlist = useSelector(state => state.playlistReducer.playlist);
+
+  useEffect(() => {
+    console.log(playlist);
+  }, [playlist])
+
+
   return (
     <PlaylistView>
       Playlist

@@ -36,7 +36,7 @@ const LoginView = styled.div`
 const LoginPage = () => {
   return (
     <LoginView>
-      <a className="login-link" href="http://localhost:8888/login">Login with Spotify</a>
+      <a href="http://localhost:8888/login">Login with Spotify</a>
     </LoginView>
   );
 }
