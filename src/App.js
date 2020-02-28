@@ -5,6 +5,7 @@ import LoginPage from './components/LoginPage';
 import MusicBar from './components/MusicBar/MusicBar';
 import { useSelector, useDispatch } from 'react-redux';
 import { SET_LOGGED_IN } from './store/actions/actionTypes';
+import GetMe from './components/GetMe/GetMe';
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
       <>
          {loggedIn ? <div className="App">
             <MusicBar />
+            <GetMe />
          </div> : <LoginPage />}
       </>
    );
