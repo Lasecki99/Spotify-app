@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { v1 } from 'uuid'
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
+import '../styles/scss/PlayerVariables.css';
 
 const PlaybackStyles = styled.div`
     position: absolute;
@@ -12,126 +14,70 @@ const PlaybackStyles = styled.div`
     width: 100vw;
     background-color: #282828;
 
-    > div.playback-buttons {
-        display: flex;
-        position: absolute;
-        top: 33%;
-        left: 50%;
+    > div.audio-player {
+        background-color: #282828;
+        width: 500px;
         margin: 0 auto;
-        transform: translate(-50%, -50%);
-        font-size: 30px;
-
-        &.active { top: 50%; }
-
-        > i {
-            padding: 0 5px;
-            color: #bbb;
-            cursor: pointer;
-
-            &.toggle { display: none }
-        }
+        box-shadow: none;
     }
 
-    > div.playback-text {
-        margin-top: 53px;
-
+    /* > div.playback-text {
+        position: absolute;
+        display: inline-block;
+        bottom: 15px;
+        left: 15px;
         > p {
             color: ${props => props.theme.alto};
             text-align: center;
         }
-    }
+    } */
 `;
 
 const PlaybackView = () => {
 
-    const dispatch = useDispatch();
-    const musicArr = useSelector(state => state.albumReducer.musicArr);
     const songToPlay = useSelector(state => state.playbackReducer.songToPlay);
-    const songBefore = useSelector(state => state.playbackReducer.songBefore);
+    const musicArr = useSelector(state => state.albumReducer.musicArr);
+    const dispatch = useDispatch();
+    const player = useRef();
 
-    const autoplayNext = song => {
-        if (song) {
-            let index = musicArr.indexOf(song) + 1;
+    const nextSong = () => {
+        if (songToPlay) {
+            let index = musicArr.indexOf(songToPlay);
+            index += 1;
             if (index === musicArr.length) index = 0;
             dispatch({ type: 'SET_SONG_TO_PLAY', song: musicArr[index] })
         }
     }
 
-    const playOrPause = songToPlay => {
+    const previousSong = () => {
         if (songToPlay) {
-            const { audio } = songToPlay;
-            if (!audio.paused) {
-                document.getElementById('play').classList.toggle('toggle');
-                document.getElementById('stop').classList.toggle('toggle');
-                audio.pause();
-            } else if (audio.paused) {
-                document.getElementById('play').classList.toggle('toggle');
-                document.getElementById('stop').classList.toggle('toggle');
-                if (!audio.added) {
-                    audio.addEventListener('ended', () => autoplayNext(songToPlay));
-                    audio.added = true;
-                }
-                audio.play();
-            }
-        }
-    }
-
-    const nextOrPreviousSong = e => {
-        if (songToPlay) {
-            const target = e.target.classList;
             let index = musicArr.indexOf(songToPlay);
-            if (target.contains('fa-step-forward')) {
-                index += 1;
-                if (index === musicArr.length) index = 0;
-                dispatch({ type: 'SET_SONG_TO_PLAY', song: musicArr[index] })
-            } else if (target.contains('fa-step-backward')) {
-                index -= 1;
-                if (index < 0) index = musicArr.length - 1;
-                dispatch({ type: 'SET_SONG_TO_PLAY', song: musicArr[index] })
-            }
-        }
-    }
-
-    const addToPlaylist = songToPlay => {
-        if (songToPlay) {
-            songToPlay.id = v1();
-            dispatch({ type: 'ADD_TO_PLAYLIST', song: songToPlay, id: v1() })
+            index -= 1;
+            if (index < 0) index = musicArr.length - 1;
+            dispatch({ type: 'SET_SONG_TO_PLAY', song: musicArr[index] })
         }
     }
 
     useEffect(() => {
-        if (songToPlay) {
-            dispatch({ type: 'SET_SONG_BEFORE', song: songToPlay })
-            if (songBefore) {
-                const { audio } = songBefore;
-                audio.removeEventListener('ended', autoplayNext);
-                audio.added = false;
-                audio.pause();
-                audio.currentTime = 0;
-            }
-            if (document.getElementById('play').classList.contains('toggle')) {
-                songToPlay.audio.addEventListener('ended', () => autoplayNext(songToPlay));
-                songToPlay.audio.play();
-            }
-        }
+        if (songToPlay) player.current.audio.src = songToPlay.audio.src
     }, [songToPlay])
+
 
     return (
         <PlaybackStyles>
-            <div className={songToPlay ? 'playback-buttons' : 'playback-buttons active'}>
-                <i onClick={e => nextOrPreviousSong(e)} className="fas fa-step-backward"></i>
-                <i id='play' onClick={() => playOrPause(songToPlay)} className="far fa-play-circle"></i>
-                <i id='stop' onClick={() => playOrPause(songToPlay)} className="far fa-pause-circle toggle"></i>
-                <i onClick={e => nextOrPreviousSong(e)} className="fas fa-step-forward"></i>
-                <i onClick={() => addToPlaylist(songToPlay)} className="fas fa-plus"></i>
-            </div>
-            <div className="playback-text">
+            {/* <div className="playback-text">
                 {songToPlay ?
                     <>
                         <p className="current-title">{songToPlay.name}</p>
                         <p className="current-author">{songToPlay.author}</p>
                     </> : null}
-            </div>
+            </div> */}
+            <AudioPlayer
+                className='audio-player'
+                ref={player}
+                showSkipControls
+                onClickNext={nextSong}
+                onClickPrevious={previousSong} />
         </PlaybackStyles>
     );
 }

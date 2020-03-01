@@ -1,0 +1,32 @@
+.rhap_time {
+  color: #aaa;
+}
+
+.rhap_progress-filled {
+  background-color: #ccc;
+}
+
+.rhap_progress-indicator {
+  background: #ccc;
+  -webkit-box-shadow: rgba(204, 204, 204, 0.5) 0 0 5px;
+          box-shadow: rgba(204, 204, 204, 0.5) 0 0 5px;
+}
+
+.rhap_repeat-button {
+  color: #ccc;
+}
+
+.rhap_main-controls-button {
+  color: #ccc;
+}
+
+.rhap_volume-button {
+  color: #ccc;
+}
+
+.rhap_volume-indicator {
+  background: #ccc;
+  -webkit-box-shadow: rgba(204, 204, 204, 0.5) 0 0 3px;
+          box-shadow: rgba(204, 204, 204, 0.5) 0 0 3px;
+}
+/*# sourceMappingURL=PlayerVariables.css.map */
