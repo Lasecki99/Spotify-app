@@ -24,6 +24,11 @@ const NewReleasesView = styled.div`
         display: inline-block;
       }
   }
+
+  @media (max-width: 1024px) {
+    margin-left: 60px;
+    width: 100%;
+  }
 `;
 
 const NewReleases = () => {

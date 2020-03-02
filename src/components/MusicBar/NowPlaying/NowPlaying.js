@@ -11,6 +11,10 @@ const NowPlayingView = styled.div`
     padding-top: 15px;
     font-size: 22px;
   }
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 const NowPlaying = () => {

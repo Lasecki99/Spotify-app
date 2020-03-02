@@ -17,4 +17,19 @@ p.song-list-name.clickable.selected {
   background-color: #ddd;
   font-weight: bold;
 }
+
+@media (max-width: 1024px) {
+  h2.list-of-songs {
+    display: none;
+  }
+
+  p.song-list-name.clickable {
+    display: none;
+  }
+
+  p.song-list-name.clickable.selected {
+    display: none;
+  }
+}
+
 /*# sourceMappingURL=SongList.css.map */

@@ -14,6 +14,11 @@ const GetMeView = styled.div`
   padding: 2px 6px;
   cursor: pointer;
   background-color: #121212;
+  transition: .2s;
+
+  &:hover {
+    background-color: gray;
+  }
 
   > i {
     color: white;
@@ -25,17 +30,22 @@ const GetMeView = styled.div`
   }
 
   > img {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50px;
   margin-left: 10px;
   }
 
   > p {
   color: ${props => props.theme.alto};
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
-}`;
+  }
+  
+  @media (max-width: 1024px) {
+    display: none;
+  }
+  `;
 
 const ListView = styled.ul`
   position: absolute;
@@ -57,11 +67,12 @@ const ListView = styled.ul`
     width: 100%;
     height: 100%;
     padding: 5px 45px;
-    &:hover {
+    transition: .2s;
 
+    &:hover {
+      background-color: gray;
     }
   }
-
 `;
 
 const GetMe = () => {

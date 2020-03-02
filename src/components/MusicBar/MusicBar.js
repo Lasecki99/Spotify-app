@@ -48,6 +48,26 @@ const MusicAside = styled.div`
       }
     }
   }
+
+  @media (max-width: 1024px) {
+    width: 60px;
+
+    ul {
+      margin: 15px 0 0 15px;
+
+      a {
+
+        p {
+          display: none;
+        }
+
+        i {
+          font-size: 26px;
+          margin: 10px 0;
+        }
+      }
+    }
+  }
 `;
 
 const MusicBar = () => {

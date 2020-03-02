@@ -9,6 +9,10 @@ const PlaylistView = styled.div`
   padding-left: 20px;
   margin-left: 230px;
   color:white;
+
+  @media (max-width: 1024px) {
+    margin-left: 60px;
+  }
 `;
 
 const Playlist = () => {
