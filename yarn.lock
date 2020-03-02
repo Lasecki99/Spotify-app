@@ -927,7 +927,7 @@
     "@babel/helper-plugin-utils" "^7.8.3"
     "@babel/plugin-transform-typescript" "^7.8.3"
 
-"@babel/runtime@7.8.4", "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.2", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.3":
+"@babel/runtime@7.8.4", "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.2", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4":
   version "7.8.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.8.4.tgz#d79f5a2040f7caa24d53e563aad49cbc05581308"
   integrity sha512-neAp3zt80trRVBI1x0azq6c57aNBqYZH8KhMm3TaB7wEI5Q4A2SHfBHE8w9gOhI/lrqxtEbXZgQIrHP+wvSGwQ==
@@ -1040,9 +1040,9 @@
     "@hapi/hoek" "^8.3.0"
 
 "@iconify/icons-mdi@^1.0.46":
-  version "1.0.74"
-  resolved "https://registry.yarnpkg.com/@iconify/icons-mdi/-/icons-mdi-1.0.74.tgz#f72e259b48d5da17239e492e928e95abaf183141"
-  integrity sha512-azLOQSAMqvTYk4ixlVsGG4KC38cyruMIi0ufwLnLaQx7zXFc1PUssrOJxGLYjPupoF86FJGZvmozKjRtzF2UZw==
+  version "1.0.75"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-mdi/-/icons-mdi-1.0.75.tgz#2ff57fb7ff20feac60eac00819a586665fca59d0"
+  integrity sha512-kvXsJIBdvC+yZKeNwzVSt5Tn2zHAj9mvOygCbXTtRp/YfAhb3zt8L2+iX/h2DMMaEnUxz3S2s5w3CpvZjBZPzA==
 
 "@iconify/react@^1.1.1":
   version "1.1.2"
@@ -2694,9 +2694,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001020, caniuse-lite@^1.0.30001023, caniuse-lite@^1.0.30001030:
-  version "1.0.30001030"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001030.tgz#78076c4c6d67d3e41d6eb9399853fb27fe6e44ee"
-  integrity sha512-QGK0W4Ft/Ac+zTjEiRJfwDNATvS3fodDczBXrH42784kcfqcDKpEPfN08N0HQjrAp8He/Jw8QiSS9QRn7XAbUw==
+  version "1.0.30001031"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001031.tgz#76f1bdd39e19567b855302f65102d9a8aaad5930"
+  integrity sha512-DpAP5a1NGRLgYfaNCaXIRyGARi+3tJA2quZXNNA1Du26VyVkqvy2tznNu5ANyN1Y5aX44QDotZSVSUSi2uMGjg==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -8772,11 +8772,12 @@ react-error-overlay@^6.0.6:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.6.tgz#ac4d9dc4c1b5c536c2c312bf66aa2b09bfa384e2"
   integrity sha512-Yzpno3enVzSrSCnnljmr4b/2KUQSMZaPuqmS26t9k4nW7uwJk6STWmH9heNjPuvqUTO3jOSPkHoKgO4+Dw7uIw==
 
-react-h5-audio-player@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/react-h5-audio-player/-/react-h5-audio-player-2.4.0.tgz#f470dc15566e67953f11aea0d170ec92fca15ca3"
-  integrity sha512-VtWEI0E46lLV7EzgjpnoZKIML0Xux0TdldvOBSXMvsqTHn7lvzhP0LUYNJ5VMVj8hAPkh1vo8WxVVwbTA0QanA==
+react-h5-audio-player@2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/react-h5-audio-player/-/react-h5-audio-player-2.4.1.tgz#d7885cb0cb205dca28d462a404c2d62f8df10b4a"
+  integrity sha512-2vGTKQT5Dy7G9aNdcGDpzFPxRcoSxv0ufHz4jFmCfd/68qr101v3lowRpX/eaFxwZdF/1/ckZYoGOismz8D81w==
   dependencies:
+    "@babel/runtime" "^7.8.4"
     "@iconify/icons-mdi" "^1.0.46"
     "@iconify/react" "^1.1.1"
 

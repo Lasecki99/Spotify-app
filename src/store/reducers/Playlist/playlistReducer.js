@@ -1,3 +1,4 @@
+import { ADD_TO_PLAYLIST, REMOVE_FROM_PLAYLIST } from '../../actions/actionTypes';
 
 const initialState = {
   playlist: []
@@ -7,12 +8,12 @@ const playlistReducer = (state = initialState, action) => {
 
   switch (action.type) {
 
-    case 'ADD_TO_PLAYLIST':
+    case ADD_TO_PLAYLIST:
       return {
         ...state,
         playlist: state.playlist.concat(action.song)
       }
-    case 'REMOVE_FROM_PLAYLIST':
+    case REMOVE_FROM_PLAYLIST:
       return {
         ...state,
         playlist: state.playlist.filter(item => item.id !== action.id)

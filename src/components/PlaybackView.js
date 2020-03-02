@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
+import { SET_SONG_TO_PLAY } from '../store/actions/actionTypes';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import '../styles/scss/PlayerVariables.css';
@@ -45,7 +46,7 @@ const PlaybackView = () => {
             let index = musicArr.indexOf(songToPlay);
             index += 1;
             if (index === musicArr.length) index = 0;
-            dispatch({ type: 'SET_SONG_TO_PLAY', song: musicArr[index] })
+            dispatch({ type: SET_SONG_TO_PLAY, song: musicArr[index] })
         }
     }
 
@@ -54,7 +55,7 @@ const PlaybackView = () => {
             let index = musicArr.indexOf(songToPlay);
             index -= 1;
             if (index < 0) index = musicArr.length - 1;
-            dispatch({ type: 'SET_SONG_TO_PLAY', song: musicArr[index] })
+            dispatch({ type: SET_SONG_TO_PLAY, song: musicArr[index] })
         }
     }
 

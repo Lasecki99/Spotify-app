@@ -1,3 +1,5 @@
+import { GET_ME } from '../../actions/actionTypes';
+
 const initialState = {
   user: {
     username: null,
@@ -8,7 +10,7 @@ const initialState = {
 const getMeReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case 'GET_ME':
+    case GET_ME:
       return {
         ...state,
         user: { username: action.name, photo: action.photo }

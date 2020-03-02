@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchItem from './SearchItem.js/SearchItem';
-import {v1} from 'uuid';
+import { v1 } from 'uuid';
 
 const SearchType = (props) => {
   const { item } = props;

@@ -1,3 +1,5 @@
+import { SET_SONG_TO_PLAY } from '../../actions/actionTypes';
+
 const initialState = {
   songToPlay: null
 }
@@ -5,7 +7,7 @@ const initialState = {
 const playbackReducer = (state = initialState, action) => {
   switch (action.type) {
 
-    case 'SET_SONG_TO_PLAY':
+    case SET_SONG_TO_PLAY:
       return {
         ...state,
         songToPlay: action.song

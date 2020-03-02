@@ -1,8 +1,9 @@
 import React from 'react';
-import {v1} from 'uuid';
+import { v1 } from 'uuid';
 import NowPlaying from '../MusicBar/NowPlaying/NowPlaying';
 import '../../styles/scss/SongList.css';
 import { useSelector, useDispatch } from 'react-redux';
+import { SET_SONG_TO_PLAY } from '../../store/actions/actionTypes';
 
 const SongList = () => {
 
@@ -17,7 +18,7 @@ const SongList = () => {
             {musicArr.length ? musicArr.map(item => {
                 const { author, name } = item;
                 return (
-                    <p key={v1()} onClick={() => dispatch({ type: 'SET_SONG_TO_PLAY', song: item })} className={songToPlay === item ? 'song-list-name clickable selected' : 'song-list-name clickable'}>{`${author} - ${name}`}</p>
+                    <p key={v1()} onClick={() => dispatch({ type: SET_SONG_TO_PLAY, song: item })} className={songToPlay === item ? 'song-list-name clickable selected' : 'song-list-name clickable'}>{`${author} - ${name}`}</p>
                 )
             }) : null}
         </>

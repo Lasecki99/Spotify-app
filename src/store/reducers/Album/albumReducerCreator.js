@@ -1,4 +1,5 @@
 import { spotifyWebApi } from '../../../spotifyWebApi/spotifyWebApi';
+import { SET_MUSIC_ARR } from '../../actions/actionTypes';
 
 const getTrack = track => ({
   author: track.artists[0].name,
@@ -7,7 +8,7 @@ const getTrack = track => ({
 });
 
 const updateState = res => ({
-  type: 'SET_MUSIC_ARR',
+  type: SET_MUSIC_ARR,
   value: res
 })
 

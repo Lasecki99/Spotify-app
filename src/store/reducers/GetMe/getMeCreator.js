@@ -1,8 +1,9 @@
 import { spotifyWebApi } from '../../../spotifyWebApi/spotifyWebApi';
+import { GET_ME } from '../../actions/actionTypes';
 const randomUser = 'https://www.kindpng.com/picc/m/80-800188_random-user-random-icon-png-transparent-png.png';
 
 const getMeFetchSuccess = (name, photo) => ({
-  type: 'GET_ME',
+  type: GET_ME,
   name,
   photo
 })
