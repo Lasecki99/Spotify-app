@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import SearchType from './SearchType/SearchType';
+import '../../styles/Search.css';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { getNewReleases } from '../../store/reducers/NewReleases/newReleasesCreators';
@@ -13,7 +14,6 @@ const NewReleasesView = styled.div`
     height: 100%;
     background-color: #121212;
     overflow: scroll;
-    padding-left: 20px;
 
       > h2 {
           color: ${props => props.theme.alto};

@@ -24,6 +24,10 @@
   color: #ccc;
 }
 
+.rhap_volume-bar {
+  background: rgba(221, 221, 221, 0.5);
+}
+
 .rhap_volume-indicator {
   background: #ccc;
   -webkit-box-shadow: rgba(204, 204, 204, 0.5) 0 0 3px;

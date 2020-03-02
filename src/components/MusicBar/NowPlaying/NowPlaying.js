@@ -4,13 +4,11 @@ import { useSelector } from 'react-redux';
 
 const NowPlayingView = styled.div`
   color: #999;
-  padding-left: 12px;
   padding-top: 10px;
 
   > h2 {
     color: #eee;
     padding-top: 15px;
-    padding-left: 10px;
     font-size: 22px;
   }
 `;

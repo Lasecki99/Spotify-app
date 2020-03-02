@@ -22,7 +22,7 @@ const Playlist = () => {
 
   return (
     <PlaylistView>
-      Playlist
+      {playlist.length ? <div></div> : <h2>Your playlist is empty</h2>}
     </PlaylistView>
   );
 }

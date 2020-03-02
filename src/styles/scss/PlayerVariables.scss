@@ -29,6 +29,9 @@ $rhap_font-family: white !default; // Font family of current time and duration
   color: $rhap_theme-color;
 }
 
+.rhap_volume-bar {
+  background: rgba(221, 221, 221, 0.5);
+}
 
 .rhap_volume-indicator {
   background: $rhap_theme-color;
