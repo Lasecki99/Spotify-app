@@ -37,3 +37,11 @@ $rhap_font-family: white !default; // Font family of current time and duration
   background: $rhap_theme-color;
   box-shadow: rgba($rhap_theme-color, .5) 0 0 3px;
 }
+
+.rhap_progress-filled {
+  background-color: #868686;
+}
+
+.rhap_download-progress {
+  background-color: #868686;
+}

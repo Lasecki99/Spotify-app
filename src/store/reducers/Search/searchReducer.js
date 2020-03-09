@@ -1,7 +1,8 @@
 import { GET_SEARCH_LIST, RESET_LIST } from '../../actions/actionTypes';
 
 const initialState = {
-  searchList: []
+  searchList: [],
+  isLoading: false
 }
 
 const searchReducer = (state = initialState, action) => {
@@ -10,12 +11,19 @@ const searchReducer = (state = initialState, action) => {
     case GET_SEARCH_LIST:
       return {
         ...state,
-        searchList: action.res
+        searchList: action.res,
+        isLoading: false
       }
     case RESET_LIST:
       return {
         ...state,
         searchList: []
+      }
+
+    case 'SET_LOADER':
+      return {
+        ...state,
+        isLoading: true
       }
 
     default:
