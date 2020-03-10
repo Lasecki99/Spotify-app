@@ -79,13 +79,13 @@ const MusicBar = () => {
           <ul>
             <NavLink exact to="/"><i className="fas fa-search"></i><p>Search</p></NavLink>
             <NavLink to="/new-releases"><i className="fas fa-compact-disc"></i><p>New releases</p></NavLink>
-            <NavLink to="/playlist"><i className="fas fa-sliders-h"></i><p>Playlist</p></NavLink>
+            {/* <NavLink to="/playlist"><i className="fas fa-sliders-h"></i><p>Playlist</p></NavLink> */}
             <SongList />
           </ul>
         </MusicAside>
         <Route path="/new-releases" component={NewReleases} />
-        <Route path="/playlist" component={Playlist} />
-        <Route path="/" exact component={Search} />
+        {/* <Route path="/playlist" component={Playlist} /> */}
+        <Route path="/" component={Search} />
         <PlaybackView />
       </BrowserRouter>
     </>

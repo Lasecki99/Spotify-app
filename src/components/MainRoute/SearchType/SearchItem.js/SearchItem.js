@@ -5,16 +5,21 @@ import { checkAndReturnSongs } from '../../../../store/reducers/Album/albumReduc
 
 const SearchItem = ({ item }) => {
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    return (
-        <>
-            <div className="song">
-                <img onClick={() => dispatch(checkAndReturnSongs(item))} src={item.images && item.images.length ? item.images[0].url : jpg} alt="" />
-                <p onClick={() => dispatch(checkAndReturnSongs(item))} className='song-name'>{item.name}</p>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="song">
+        <img
+          onClick={() => dispatch(checkAndReturnSongs(item))}
+          src={item.images && item.images.length ? item.images[0].url : jpg}
+          alt="song" />
+        <p
+          onClick={() => dispatch(checkAndReturnSongs(item))}
+          className='song-name'>{item.name}</p>
+      </div>
+    </>
+  );
 }
 
 export default SearchItem;

@@ -5,6 +5,7 @@ import { SET_SONG_TO_PLAY } from '../store/actions/actionTypes';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import '../styles/scss/PlayerVariables.css';
+import YtLink from './YtLink/YtLink';
 
 const PlaybackStyles = styled.div`
   position: absolute;
@@ -79,6 +80,7 @@ const PlaybackView = () => {
             <p className="current-author">{songToPlay.author}</p>
           </> : null}
       </div> */}
+      {songToPlay ? <YtLink name={songToPlay.name} author={songToPlay.author} /> : null}
       <AudioPlayer
         className='audio-player'
         ref={player}
