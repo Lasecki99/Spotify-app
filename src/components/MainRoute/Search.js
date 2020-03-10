@@ -66,6 +66,17 @@ const SearchView = styled.div`
       font-size: 18px;
       padding: 10px 10px;
     }
+
+    div.search-main-content {
+      div {
+        margin-left: 20px;
+        margin-right: 50px;
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+
   }
 `;
 

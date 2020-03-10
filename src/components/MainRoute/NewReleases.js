@@ -28,6 +28,11 @@ const NewReleasesView = styled.div`
   @media (max-width: 1024px) {
     margin-left: 60px;
     width: 100%;
+
+    div {
+      margin-left: 20px;
+      margin-right: 50px;
+    }
   }
 `;
 
