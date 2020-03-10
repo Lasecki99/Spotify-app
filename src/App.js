@@ -9,6 +9,13 @@ import GetMe from './components/GetMe/GetMe';
 
 const App = () => {
 
+   const resetToken = () => {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('expirationDate');
+      alert('Please login again ;)');
+      window.location.href = window.location.origin;
+   }
+
    const loggedIn = useSelector(state => state.appReducer.loggedIn);
    const dispatch = useDispatch();
 
@@ -20,9 +27,19 @@ const App = () => {
       if (Object.keys(params).length) {
          const store = JSON.stringify(params.access_token);
          localStorage.setItem('accessToken', store);
+         localStorage.setItem("expirationDate", Date.now() + 3600 * 1000);
          spotifyWebApi.setAccessToken(params.access_token);
          if (!loggedIn) dispatch({ type: SET_LOGGED_IN, bool: true });
       }
+   }
+
+   const expirationDate = Number(localStorage.getItem("expirationDate"));
+
+   if (expirationDate && expirationDate < Date.now()) {
+      resetToken();
+   } else {
+      const timeLeft = expirationDate - Date.now();
+      setTimeout(resetToken, timeLeft);
    }
 
    return (

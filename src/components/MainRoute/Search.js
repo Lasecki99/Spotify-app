@@ -82,9 +82,7 @@ const Search = () => {
       dispatch({ type: 'SET_LOADER' })
       dispatch(getSearchList(inputValue));
     }
-    else if (searchList.length && !inputValue) dispatch({
-      type: RESET_LIST
-    });
+    else if (searchList.length && !inputValue) dispatch({type: RESET_LIST});
   }, [inputValue])
 
   return (
