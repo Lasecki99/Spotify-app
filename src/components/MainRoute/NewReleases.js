@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import SearchType from './SearchType/SearchType';
-import '../../styles/Search.css';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { getNewReleases } from '../../store/reducers/NewReleases/newReleasesCreators';
@@ -9,30 +8,11 @@ const NewReleasesView = styled.div`
   width: calc(100% - 230px);
   margin-left: 230px;
   height: 100%;
-
-  > div {
-    height: 100%;
-    background-color: #121212;
-    overflow: scroll;
-
-      > h2 {
-          color: ${props => props.theme.alto};
-          margin: 25px 0 25px 20px;
-        }
-
-      > div {
-        display: inline-block;
-      }
-  }
+  overflow: scroll;
 
   @media (max-width: 1024px) {
     margin-left: 60px;
     width: 100%;
-
-    div {
-      margin-left: 20px;
-      margin-right: 50px;
-    }
   }
 `;
 
@@ -51,7 +31,7 @@ const NewReleases = () => {
 
   return (
     <NewReleasesView>
-      {dataObject ? dataObject.map(item => <SearchType key={item.type} item={item} />) : null}
+      {dataObject ? <div className='releases-wrapper'>{dataObject.map(item => <SearchType key={item.type} item={item} />)}</div> : null}
     </NewReleasesView>
   );
 }

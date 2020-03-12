@@ -13,7 +13,7 @@ const GetMeView = styled.div`
   border-radius: 20px;
   padding: 2px 6px;
   cursor: pointer;
-  background-color: #121212;
+  background-color: ${props => props.theme.codGray};
   transition: .2s;
 
   &:hover {
@@ -54,7 +54,7 @@ const ListView = styled.ul`
   right: 28px;
   color: ${props => props.theme.alto};
   border: 1px solid ${props => props.theme.alto};
-  background-color: #121212;
+  background-color: ${props => props.theme.codGray};
   border-radius: 5px;
   cursor: pointer;
 

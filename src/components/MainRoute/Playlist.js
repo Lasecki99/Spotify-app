@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 const PlaylistView = styled.div`
   height: 100%;
-  background-color: #121212;
+  background-color: ${props => props.theme.codGray};
   overflow: scroll;
   padding-left: 20px;
   margin-left: 230px;

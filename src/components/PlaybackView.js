@@ -14,10 +14,10 @@ const PlaybackStyles = styled.div`
   right: 0;
   height: 90px;
   width: 100vw;
-  background-color: #282828;
+  background-color: ${props => props.theme.mineShaft};
 
   > div.audio-player {
-      background-color: #282828;
+      background-color: ${props => props.theme.mineShaft};
       width: 500px;
       margin: 0 auto;
       box-shadow: none;

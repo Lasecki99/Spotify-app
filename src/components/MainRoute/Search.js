@@ -11,9 +11,9 @@ const SearchView = styled.div`
   margin-left: 230px;
   height: 100%;
 
-  > input {
+  input {
     width: 100%;
-    background-color: #282828;
+    background-color: ${props => props.theme.mineShaft};
     color: #eee;
     font-weight: 600;
     font-size: 30px;
@@ -22,61 +22,21 @@ const SearchView = styled.div`
     border: none;
   }
 
-  > div.search-main-content {
+  div.search-main-content {
     height: calc(100% - 67px);
-    background-color: #121212;
+    background-color: ${props => props.theme.codGray};
     overflow: scroll;
-
-      div {
-      display: inline-block;
-
-        > h2 {
-        color: #ddd;
-        margin: 25px 0 25px 20px;
-        }
-
-        > div.song {
-          width: 210px;
-          height: 258px;
-
-        > img {
-          display: block;
-          width: 170px;
-          height: 170px;
-          cursor: pointer;
-          margin: 0 auto;
-          border-radius: 5px;
-        }
-
-        > p {
-          cursor: pointer;
-          color: #ddd;
-          text-align: center;
-          margin-top: 10px;
-        }
-      }
-    }
   }
 
   @media (max-width: 1024px) {
-    width: 100%;
     margin-left: 60px;
+    width: 100%;
 
     input {
+      width: calc(100% - 60px);
       font-size: 18px;
       padding: 10px 10px;
     }
-
-    div.search-main-content {
-      div {
-        margin-left: 20px;
-        margin-right: 50px;
-      }
-    }
-  }
-
-  @media (max-width: 400px) {
-
   }
 `;
 
