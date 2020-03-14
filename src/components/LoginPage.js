@@ -11,7 +11,7 @@ const LoginView = styled.div`
   z-index: 10000;
   background-color: black;
 
-  > a {
+  a {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -29,6 +29,17 @@ const LoginView = styled.div`
     &:hover {
       transform: translate(-50%, -50%) scale(1.2);
       transform-origin: 50% 50%;
+    }
+  }
+
+  @media (max-width: 1024px) {
+
+    a {
+      width: 220px;
+      font-size: 20px;
+      padding: 5px 10px;
+      border-width: 2px;
+      text-align: center;
     }
   }
 `;

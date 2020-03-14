@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { v1 } from 'uuid';
 import NowPlaying from '../MusicBar/NowPlaying/NowPlaying';
 import { useSelector, useDispatch } from 'react-redux';
@@ -47,6 +47,12 @@ const SongList = () => {
   const dispatch = useDispatch();
   const musicArr = useSelector(state => state.albumReducer.musicArr);
   const songToPlay = useSelector(state => state.playbackReducer.songToPlay);
+
+  useEffect(() => {
+    if (musicArr.length) {
+      dispatch({ type: SET_SONG_TO_PLAY, song: musicArr[0] })
+    }
+  }, [musicArr])
 
   return (
     <SongListView>
