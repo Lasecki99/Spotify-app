@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.681255b4.chunk.css",
-    "main.js": "/static/js/main.8c150b9e.chunk.js",
-    "main.js.map": "/static/js/main.8c150b9e.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.9fb5a95c.js",
-    "runtime-main.js.map": "/static/js/runtime-main.9fb5a95c.js.map",
-    "static/css/2.20fddfda.chunk.css": "/static/css/2.20fddfda.chunk.css",
-    "static/js/2.0710ff0c.chunk.js": "/static/js/2.0710ff0c.chunk.js",
-    "static/js/2.0710ff0c.chunk.js.map": "/static/js/2.0710ff0c.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.c6a365e751504324bbc12fe13e9a1c21.js": "/precache-manifest.c6a365e751504324bbc12fe13e9a1c21.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.20fddfda.chunk.css.map": "/static/css/2.20fddfda.chunk.css.map",
-    "static/css/main.681255b4.chunk.css.map": "/static/css/main.681255b4.chunk.css.map",
-    "static/js/2.0710ff0c.chunk.js.LICENSE.txt": "/static/js/2.0710ff0c.chunk.js.LICENSE.txt",
-    "static/media/music.jpg": "/static/media/music.4cbc434b.jpg",
-    "static/media/yt.webp": "/static/media/yt.29cbc2bb.webp"
+    "main.css": "/Spotify-app/static/css/main.681255b4.chunk.css",
+    "main.js": "/Spotify-app/static/js/main.cbe94b91.chunk.js",
+    "main.js.map": "/Spotify-app/static/js/main.cbe94b91.chunk.js.map",
+    "runtime-main.js": "/Spotify-app/static/js/runtime-main.2cfba27e.js",
+    "runtime-main.js.map": "/Spotify-app/static/js/runtime-main.2cfba27e.js.map",
+    "static/css/2.20fddfda.chunk.css": "/Spotify-app/static/css/2.20fddfda.chunk.css",
+    "static/js/2.a4e7f37f.chunk.js": "/Spotify-app/static/js/2.a4e7f37f.chunk.js",
+    "static/js/2.a4e7f37f.chunk.js.map": "/Spotify-app/static/js/2.a4e7f37f.chunk.js.map",
+    "index.html": "/Spotify-app/index.html",
+    "precache-manifest.616a01fd47972f54fdab1493675ec605.js": "/Spotify-app/precache-manifest.616a01fd47972f54fdab1493675ec605.js",
+    "service-worker.js": "/Spotify-app/service-worker.js",
+    "static/css/2.20fddfda.chunk.css.map": "/Spotify-app/static/css/2.20fddfda.chunk.css.map",
+    "static/css/main.681255b4.chunk.css.map": "/Spotify-app/static/css/main.681255b4.chunk.css.map",
+    "static/js/2.a4e7f37f.chunk.js.LICENSE.txt": "/Spotify-app/static/js/2.a4e7f37f.chunk.js.LICENSE.txt",
+    "static/media/music.jpg": "/Spotify-app/static/media/music.4cbc434b.jpg",
+    "static/media/yt.webp": "/Spotify-app/static/media/yt.29cbc2bb.webp"
   },
   "entrypoints": [
-    "static/js/runtime-main.9fb5a95c.js",
+    "static/js/runtime-main.2cfba27e.js",
     "static/css/2.20fddfda.chunk.css",
-    "static/js/2.0710ff0c.chunk.js",
+    "static/js/2.a4e7f37f.chunk.js",
     "static/css/main.681255b4.chunk.css",
-    "static/js/main.8c150b9e.chunk.js"
+    "static/js/main.cbe94b91.chunk.js"
   ]
 }
