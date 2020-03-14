@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Route, BrowserRouter } from 'react-router-dom';
 import Search from '../MainRoute/Search';
 import NewReleases from '../MainRoute/NewReleases';
-import Playlist from '../MainRoute/Playlist';
+// import Playlist from '../MainRoute/Playlist';
 import SongList from '../SongList/SongList';
 import PlaybackView from '../PlaybackView';
 
