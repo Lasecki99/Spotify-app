@@ -19,9 +19,9 @@ const Playlist = () => {
 
   const playlist = useSelector(state => state.playlistReducer.playlist);
 
-  useEffect(() => {
-    console.log(playlist);
-  }, [playlist])
+  // useEffect(() => {
+  //   console.log(playlist);
+  // }, [playlist])
 
 
   return (
