@@ -88,7 +88,7 @@ const GetMe = () => {
 
   const logout = () => {
     localStorage.removeItem('accessToken');
-    window.location.href = window.location.origin;
+    window.location.href = window.location.origin + window.location.pathname;
   }
 
   useEffect(() => {

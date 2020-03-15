@@ -13,7 +13,7 @@ const App = () => {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('expirationDate');
       alert('Please login again ;)');
-      window.location.href = window.location.origin;
+      window.location.href = window.location.origin + window.location.pathname;
    }
 
    const loggedIn = useSelector(state => state.appReducer.loggedIn);
