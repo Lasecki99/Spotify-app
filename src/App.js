@@ -37,7 +37,7 @@ const App = () => {
 
    if (expirationDate && expirationDate < Date.now()) {
       resetToken();
-   } else {
+   } else if (expirationDate){
       const timeLeft = expirationDate - Date.now();
       setTimeout(resetToken, timeLeft);
    }
