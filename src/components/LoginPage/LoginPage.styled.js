@@ -1,8 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
-const LoginView = styled.div`
-
+export const Login = styled.div`
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -24,7 +22,7 @@ const LoginView = styled.div`
     padding: 10px 15px;
     border-radius: 30px;
     font-size: 40px;
-    transition: .2s;
+    transition: 0.2s;
 
     &:hover {
       transform: translate(-50%, -50%) scale(1.2);
@@ -33,7 +31,6 @@ const LoginView = styled.div`
   }
 
   @media (max-width: 1024px) {
-
     a {
       width: 220px;
       font-size: 20px;
@@ -43,12 +40,3 @@ const LoginView = styled.div`
     }
   }
 `;
-
-const LoginPage = () => {
-  return (
-    <LoginView>
-      <a href="https://spotify-app-pl.herokuapp.com/login">Login with Spotify</a>
-    </LoginView>
-  );
-}
-export default LoginPage;
