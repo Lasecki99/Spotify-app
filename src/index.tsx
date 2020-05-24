@@ -15,7 +15,7 @@ import playbackReducer from './store/reducers/Playback/playbackReducer';
 import playlistReducer from './store/reducers/Playlist/playlistReducer';
 import getMeReducer from './store/reducers/GetMe/getMeReducer';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = (window as any)['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose || compose;
 
 const rootReducer = combineReducers({
   newReleases,

@@ -1,17 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as S from './GetMe.styled';
 import { getMeFetch } from '../../store/reducers/GetMe/getMeCreator';
 import { useDispatch, useSelector } from 'react-redux';
 
 const GetMe = () => {
+  const list = useRef(null);
+  const arrowUp = useRef(null);
+  const arrowDown = useRef(null);
   const dispatch = useDispatch();
   const user = useSelector(state => state.getMeReducer.user);
 
   const expandOptions = () => {
     const hide = 'hide';
-    document.body.querySelector('i.fa-angle-up').classList.toggle(hide);
-    document.body.querySelector('i.fa-angle-down').classList.toggle(hide);
-    document.body.querySelector('ul.user-list').classList.toggle(hide);
+    if (list.current && arrowUp.current && arrowDown.current) {
+      list.current.classList.toggle(hide);
+      arrowDown.current.classList.toggle(hide);
+      arrowUp.current.classList.toggle(hide);
+    }
   };
 
   const logout = () => {
@@ -25,14 +30,14 @@ const GetMe = () => {
 
   return (
     <>
-      <S.List className="user-list hide">
+      <S.List ref={list} className="user-list hide">
         <li onClick={logout}>Logout</li>
       </S.List>
       <S.GetMe onClick={expandOptions}>
         {user.username ? (
           <>
-            <i className="fas fa-angle-down"></i>
-            <i className="fas fa-angle-up hide"></i>
+            <i ref={arrowDown} className="fas fa-angle-down"></i>
+            <i ref={arrowUp} className="fas fa-angle-up hide"></i>
             <p>{user.username}</p>
             <img src={user.photo} alt="you" />
           </>
