@@ -3,7 +3,14 @@ import jpg from '../../../../assets/music.jpg'
 import { useDispatch } from 'react-redux';
 import { checkAndReturnSongs } from '../../../../store/reducers/Album/albumReducerCreator';
 
-const SearchItem = ({ item }) => {
+type RootState = {
+  item: {
+    images: [{ url: string }],
+    name: string
+  }
+}
+
+const SearchItem = ({ item }: RootState) => {
 
   const dispatch = useDispatch();
 

@@ -6,9 +6,16 @@ import { getSearchList } from '../../../store/reducers/Search/searchReducerCreat
 import { RESET_LIST } from '../../../store/actions/actionTypes';
 import Spinner from '../../Spinner/Spinner';
 
+type RootState = {
+  searchReducer: {
+    searchList: [{ type: string }],
+    isLoading: boolean
+  }
+}
+
 const Search = () => {
-  const searchList = useSelector(state => state.searchReducer.searchList);
-  const isLoading = useSelector(state => state.searchReducer.isLoading);
+  const searchList = useSelector((state: RootState) => state.searchReducer.searchList);
+  const isLoading = useSelector((state: RootState) => state.searchReducer.isLoading);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = useState('');
@@ -32,14 +39,14 @@ const Search = () => {
         {isLoading ? (
           <Spinner />
         ) : (
-          <div className="search-main-content">
-            {searchList
-              ? searchList.map(item => (
+            <div className="search-main-content">
+              {searchList
+                ? searchList.map(item => (
                   <SearchType key={item.type} item={item} />
                 ))
-              : null}
-          </div>
-        )}
+                : null}
+            </div>
+          )}
       </S.Search>
     </>
   );

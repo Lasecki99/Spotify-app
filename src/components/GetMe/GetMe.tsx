@@ -1,18 +1,27 @@
 import React, { useEffect, useRef } from 'react';
 import * as S from './GetMe.styled';
 import { getMeFetch } from '../../store/reducers/GetMe/getMeCreator';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
+
+type RootState = {
+  getMeReducer: {
+    user: {
+      username: string,
+      photo: string
+    }
+  }
+}
 
 const GetMe = () => {
-  const list = useRef(null);
-  const arrowUp = useRef(null);
-  const arrowDown = useRef(null);
+  const list = useRef<HTMLUListElement>(null);
+  const arrowUp = useRef<HTMLElement>(null);
+  const arrowDown = useRef<HTMLElement>(null);
   const dispatch = useDispatch();
-  const user = useSelector(state => state.getMeReducer.user);
+  const user = useSelector((state: RootState) => state.getMeReducer.user);
 
   const expandOptions = () => {
     const hide = 'hide';
-    if (list.current && arrowUp.current && arrowDown.current) {
+    if (list.current != null && arrowUp.current && arrowDown.current) {
       list.current.classList.toggle(hide);
       arrowDown.current.classList.toggle(hide);
       arrowUp.current.classList.toggle(hide);

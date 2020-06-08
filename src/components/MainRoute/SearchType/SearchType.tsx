@@ -3,7 +3,16 @@ import * as S from './SearchType.styled';
 import SearchItem from './SearchItem.js/SearchItem';
 import { v1 } from 'uuid';
 
-const SearchType = ({ item }) => {
+type RootState = {
+  item: {
+    data: {
+      items: []
+    }
+    type: string
+  }
+}
+
+const SearchType = ({ item }: RootState) => {
   return (
     <>
       {item.data.items.length ? (

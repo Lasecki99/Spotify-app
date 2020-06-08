@@ -4,8 +4,14 @@ import SearchType from '../SearchType/SearchType';
 import { useSelector, useDispatch } from 'react-redux';
 import { getNewReleases } from '../../../store/reducers/NewReleases/newReleasesCreators';
 
+type RootState = {
+  newReleases: {
+    newReleases: []
+  }
+}
+
 const NewReleases = () => {
-  const newReleases = useSelector(state => state.newReleases.newReleases);
+  const newReleases = useSelector((state: RootState) => state.newReleases.newReleases);
   const dispatch = useDispatch();
 
   useEffect(() => {
