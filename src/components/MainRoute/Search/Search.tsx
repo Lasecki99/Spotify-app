@@ -8,7 +8,7 @@ import Spinner from '../../Spinner/Spinner';
 
 type RootState = {
   searchReducer: {
-    searchList: [{ type: string }],
+    searchList: [{ type: string, data: { items: [] }}],
     isLoading: boolean
   }
 }

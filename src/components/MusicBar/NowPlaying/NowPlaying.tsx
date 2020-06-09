@@ -2,8 +2,17 @@ import React from 'react';
 import * as S from './NowPlaying.styled';
 import { useSelector } from 'react-redux';
 
+type RootState = {
+  playbackReducer: {
+    songToPlay: {
+      author: string,
+      name: string
+    }
+  }
+}
+
 const NowPlaying = () => {
-  const songToPlay = useSelector(state => state.playbackReducer.songToPlay);
+  const songToPlay = useSelector((state: RootState) => state.playbackReducer.songToPlay);
 
   return (
     <>

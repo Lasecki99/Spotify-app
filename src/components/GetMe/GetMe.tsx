@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as S from './GetMe.styled';
 import { getMeFetch } from '../../store/reducers/GetMe/getMeCreator';
-import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 type RootState = {
   getMeReducer: {
@@ -21,7 +21,7 @@ const GetMe = () => {
 
   const expandOptions = () => {
     const hide = 'hide';
-    if (list.current != null && arrowUp.current && arrowDown.current) {
+    if (list.current && arrowUp.current && arrowDown.current) {
       list.current.classList.toggle(hide);
       arrowDown.current.classList.toggle(hide);
       arrowUp.current.classList.toggle(hide);

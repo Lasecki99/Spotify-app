@@ -6,12 +6,26 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import '../../styles/scss/PlayerVariables.css';
 import YtLink from '../YtLink/YtLink';
+import H5AudioPlayer from 'react-h5-audio-player';
+
+type RootState = {
+  playbackReducer: {
+    songToPlay: {
+      audio: {src: string},
+      name: string,
+      author: string
+    }
+  },
+  albumReducer: {
+    musicArr: object[]
+  }
+}
 
 const PlaybackView = () => {
-  const songToPlay = useSelector(state => state.playbackReducer.songToPlay);
-  const musicArr = useSelector(state => state.albumReducer.musicArr);
+  const songToPlay = useSelector((state: RootState) => state.playbackReducer.songToPlay);
+  const musicArr = useSelector((state: RootState) => state.albumReducer.musicArr);
   const dispatch = useDispatch();
-  const player = useRef();
+  const player = useRef<H5AudioPlayer>(null);
 
   const nextSong = () => {
     if (songToPlay) {
@@ -32,7 +46,7 @@ const PlaybackView = () => {
   };
 
   useEffect(() => {
-    if (songToPlay) player.current.audio.src = songToPlay.audio.src;
+    if (songToPlay && player.current) player.current.audio.src = songToPlay.audio.src;
   }, [songToPlay]);
 
   return (

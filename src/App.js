@@ -17,10 +17,11 @@ const App = () => {
 
   const loggedIn = useSelector(state => state.appReducer.loggedIn);
   const dispatch = useDispatch();
+  const storageAccessToken = localStorage.getItem('accessToken');
 
-  if (localStorage.getItem('accessToken')) {
+  if (storageAccessToken) {
     spotifyWebApi.setAccessToken(
-      JSON.parse(localStorage.getItem('accessToken'))
+      JSON.parse(storageAccessToken)
     );
     if (!loggedIn) dispatch({ type: SET_LOGGED_IN, bool: true });
   } else {

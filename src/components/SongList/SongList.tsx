@@ -5,10 +5,22 @@ import NowPlaying from '../MusicBar/NowPlaying/NowPlaying';
 import { useSelector, useDispatch } from 'react-redux';
 import { SET_SONG_TO_PLAY } from '../../store/actions/actionTypes';
 
+type RootState = {
+  albumReducer: {
+    musicArr: [{author: string, name: string}]
+  },
+  playbackReducer: {
+    songToPlay: {
+      author: string,
+      name: string
+    }
+  }
+}
+
 const SongList = () => {
   const dispatch = useDispatch();
-  const musicArr = useSelector(state => state.albumReducer.musicArr);
-  const songToPlay = useSelector(state => state.playbackReducer.songToPlay);
+  const musicArr = useSelector((state: RootState) => state.albumReducer.musicArr);
+  const songToPlay = useSelector((state: RootState) => state.playbackReducer.songToPlay);
 
   useEffect(() => {
     if (musicArr.length) {
