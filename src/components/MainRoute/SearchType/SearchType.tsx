@@ -22,11 +22,11 @@ const SearchType = ({ item }: RootState) => {
             <SearchItem key={v1()} item={data} />
           ))}
         </S.SearchType>
-      ) : item.type !== 'New Releases' ? (
+      ) : item.type !== 'New Releases' && (
         <h2 style={{ margin: '25px 0 25px 20px', color: '#ddd' }}>
           No {item.type} found
         </h2>
-      ) : null}
+      )}
     </>
   );
 };

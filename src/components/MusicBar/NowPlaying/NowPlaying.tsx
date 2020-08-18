@@ -16,14 +16,14 @@ const NowPlaying = () => {
 
   return (
     <>
-      {songToPlay ? (
+      {songToPlay && (
         <>
           <S.NowPlaying>
             <h2>Now playing</h2>
             <p className="song-list-name clickable">{`${songToPlay.author} - ${songToPlay.name}`}</p>
           </S.NowPlaying>
         </>
-      ) : null}
+      )}
     </>
   );
 };

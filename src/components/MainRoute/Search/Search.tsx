@@ -8,7 +8,7 @@ import Spinner from '../../Spinner/Spinner';
 
 type RootState = {
   searchReducer: {
-    searchList: [{ type: string, data: { items: [] }}],
+    searchList: [{ type: string, data: { items: [] } }],
     isLoading: boolean
   }
 }
@@ -40,11 +40,9 @@ const Search = () => {
           <Spinner />
         ) : (
             <div className="search-main-content">
-              {searchList
-                ? searchList.map(item => (
-                  <SearchType key={item.type} item={item} />
-                ))
-                : null}
+              {searchList && searchList.map(item => (
+                <SearchType key={item.type} item={item} />
+              ))}
             </div>
           )}
       </S.Search>

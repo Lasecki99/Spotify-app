@@ -11,7 +11,7 @@ import H5AudioPlayer from 'react-h5-audio-player';
 type RootState = {
   playbackReducer: {
     songToPlay: {
-      audio: {src: string},
+      audio: { src: string },
       name: string,
       author: string
     }
@@ -58,9 +58,9 @@ const PlaybackView = () => {
             <p className="current-author">{songToPlay.author}</p>
           </> : null}
       </div> */}
-      {songToPlay ? (
+      {songToPlay && (
         <YtLink name={songToPlay.name} author={songToPlay.author} />
-      ) : null}
+      )}
       <AudioPlayer
         className="audio-player"
         ref={player}

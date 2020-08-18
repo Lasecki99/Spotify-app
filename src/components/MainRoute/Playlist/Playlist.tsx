@@ -17,7 +17,7 @@ const Playlist = () => {
 
   return (
     <S.Playlist>
-      {playlist.length ? <div></div> : <h2>Your playlist is empty</h2>}
+      {!playlist.length && <h2>Your playlist is empty</h2>}
     </S.Playlist>
   );
 };

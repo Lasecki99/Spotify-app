@@ -24,13 +24,13 @@ const NewReleases = () => {
 
   return (
     <S.NewReleases>
-      {dataObject ? (
+      {dataObject && (
         <div className="releases-wrapper">
           {dataObject.map(item => (
             <SearchType key={item.type} item={item} />
           ))}
         </div>
-      ) : null}
+      )}
     </S.NewReleases>
   );
 };

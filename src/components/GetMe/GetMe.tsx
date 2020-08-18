@@ -43,14 +43,14 @@ const GetMe = () => {
         <li onClick={logout}>Logout</li>
       </S.List>
       <S.GetMe onClick={expandOptions}>
-        {user.username ? (
+        {user.username && (
           <>
             <i ref={arrowDown} className="fas fa-angle-down"></i>
             <i ref={arrowUp} className="fas fa-angle-up hide"></i>
             <p>{user.username}</p>
             <img src={user.photo} alt="you" />
           </>
-        ) : null}
+        )}
       </S.GetMe>
     </>
   );
