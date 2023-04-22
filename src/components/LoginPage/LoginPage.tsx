@@ -1,12 +1,10 @@
-import React from 'react';
-import * as S from './LoginPage.styled';
+import React from "react";
+import * as S from "./LoginPage.styled";
 
 const LoginPage = () => {
   return (
     <S.Login>
-      <a href="https://spotify-app-pl.herokuapp.com/login">
-        Login with Spotify
-      </a>
+      <a href="https://spotifyapp.bieda.it/login">Login with Spotify</a>
     </S.Login>
   );
 };
